@@ -22,9 +22,4 @@ public class UnLoggedActivity extends Activity {
         return name;
     }
     
-    @Override
-    public void setDuration(int duration) {
-        throw new UnsupportedOperationException("Cannot modify duration of an unlogged activity");
-    }
-    
 }

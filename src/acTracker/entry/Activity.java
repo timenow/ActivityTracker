@@ -26,7 +26,7 @@ public class Activity {
         this.name = name;
         this.startTime = startTime;
         this.stopTime = stopTime;
-        this.duration = (int)((stopTime.getTime() - startTime.getTime()) / 1000 / 60);
+        this.duration = (int)((stopTime.getTime() - startTime.getTime()) / 1000 / 60) + 1;
     }
     
     public Activity(String name, Date startTime, Date stopTime, int duration) {
@@ -34,25 +34,6 @@ public class Activity {
         this.startTime = startTime;
         this.stopTime = stopTime;
         this.duration = duration;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setStopTime(Date stopTime) {
-        this.stopTime = stopTime;
-    }
-
-    public void setDuration(int minutes) {
-        if (minutes <= 0)
-            throw new RuntimeException("Duration of an activity must be greater than 0 minutes.");
-        
-        this.duration = minutes;
     }
 
     public String getName() {

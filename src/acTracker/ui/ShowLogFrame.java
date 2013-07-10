@@ -112,7 +112,7 @@ public class ShowLogFrame extends JFrame {
         StringBuilder logTextBuilder = new StringBuilder();
         for (Activity activity : dayActivityLog.getActivities()) {
             logTextBuilder.append(activity.getName() + "\n");
-            if (activity instanceof GetUpActivity
+            /*if (activity instanceof GetUpActivity
                     || activity instanceof GoToBedActivity) {
                 logTextBuilder.append(dateFormat.format(activity.getStartTime()) + "\n");
             }
@@ -123,7 +123,7 @@ public class ShowLogFrame extends JFrame {
                 logTextBuilder.append(", ");
                 logTextBuilder.append(activity.getDuration() + " min\n");
             }
-            logTextBuilder.append("\n");
+            logTextBuilder.append("\n");*/
         }
         logTextArea.setText(logTextBuilder.toString());
     }

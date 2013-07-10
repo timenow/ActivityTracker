@@ -16,11 +16,7 @@ public class ActivityTest {
     
     @Before
     public void setUp() {
-        activity = new Activity();
-        activity.setName(name);
-        activity.setStartTime(startTime);
-        activity.setStopTime(stopTime);
-        activity.setDuration(duration);
+        activity = new Activity(name, startTime, stopTime, duration);
     }
 
     @Test
@@ -29,21 +25,6 @@ public class ActivityTest {
         assertEquals(startTime, activity.getStartTime());
         assertEquals(stopTime, activity.getStopTime());
         assertEquals(duration, activity.getDuration());
-        
-        // Test constraints on Duration
-        try {
-            activity.setDuration(-10);
-            fail("Duration of an activity cannot be negative.");
-        }
-        catch (RuntimeException success) {
-        }
-        
-        try {
-            activity.setDuration(0);
-            fail("Duration of an activity cannot be 0.");
-        }
-        catch (RuntimeException success) {
-        }
     }
     
     @Test

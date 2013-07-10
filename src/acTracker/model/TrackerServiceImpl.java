@@ -49,10 +49,6 @@ public class TrackerServiceImpl implements TrackerService {
             // TODO: Improve handle of GetUp and GoToBed event, considering to add a new type 
             // TODO: of activities: SleepActivity, and two types of events: GetUpEvent, GoToBedEvent
             // TODO: or setting getUpTime and goToBedTime of each day
-            if (activity instanceof GetUpActivity || activity instanceof GoToBedActivity) {
-                continue;
-            }
-            
             TimeType timeType = activity.getTimeType();
             if (timeType == null) {
                 timeType = TimeType.OTHER;

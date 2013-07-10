@@ -113,16 +113,16 @@ public class CompleteLogFrame extends JFrame {
         
         String timeInfo;
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        if (activity.getClass() == GetUpActivity.class 
-                || activity.getClass() == GoToBedActivity.class) {
-            timeInfo = dateFormat.format(activity.getStartTime());
-        }
-        else {
-            timeInfo = String.format("%s -- %s",
-                                     dateFormat.format(activity.getStartTime()),
-                                     dateFormat.format(activity.getStopTime()));
-        }
-        p.add(new JLabel(timeInfo));
+//        if (activity.getClass() == GetUpActivity.class 
+//                || activity.getClass() == GoToBedActivity.class) {
+//            timeInfo = dateFormat.format(activity.getStartTime());
+//        }
+//        else {
+//            timeInfo = String.format("%s -- %s",
+//                                     dateFormat.format(activity.getStartTime()),
+//                                     dateFormat.format(activity.getStopTime()));
+//        }
+//        p.add(new JLabel(timeInfo));
         
         container.add(p);
     }
