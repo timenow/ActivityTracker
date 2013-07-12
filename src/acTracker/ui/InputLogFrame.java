@@ -2,12 +2,12 @@ package acTracker.ui;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import acTracker.control.Controller;
+import acTracker.util.DateTime;
 
-public class ImportLogFrame extends JFrame {
+public class InputLogFrame extends JFrame {
 
     private static final long serialVersionUID = -2965672055517820096L;
     
@@ -16,7 +16,7 @@ public class ImportLogFrame extends JFrame {
     private JSpinner.DateEditor timeEditor;
     private JTextArea logTextArea;
 
-    public ImportLogFrame() {
+    public InputLogFrame() {
         init();
     }
     
@@ -39,18 +39,15 @@ public class ImportLogFrame extends JFrame {
     
     private JComponent createHeaderPane() {
         JPanel pane = new JPanel(new FlowLayout());
+        pane.setBorder(new EmptyBorder(0, 0, 5, 0));
+        
         pane.add(new JLabel("Date:"));
         
         JSpinner timeSpinner = new JSpinner(new SpinnerDateModel());
-        timeEditor = new JSpinner.DateEditor(timeSpinner, "MM-dd");
+        timeEditor = new JSpinner.DateEditor(timeSpinner, "yyyy-MM-dd");
         timeSpinner.setEditor(timeEditor);
-        
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_YEAR, -1);
-        timeSpinner.setValue(calendar.getTime());
-        
+        timeSpinner.setValue(DateTime.yesterday());
         pane.add(timeSpinner);
-        pane.setBorder(new EmptyBorder(0, 0, 5, 0));
         
         return pane;
     }
@@ -61,17 +58,14 @@ public class ImportLogFrame extends JFrame {
         logTextArea.setEditable(true);
         logTextArea.setLineWrap(true);
         logTextArea.setText(
-                "Get up\n" + 
-                "07:00\n" + 
-                "\n" + 
-                "Wash face, Brush teeth\n" + 
-                "07:00 -- 07:15\n" + 
-                "\n" + 
-                "Eat breakfast\n" + 
-                "07:20 -- 07:40\n" + 
-                "\n" + 
-                "Go to bed\n" + 
-                "23:00");
+                "Sleep\n" +
+                "23:44 -- 05:40, 5 h 57 min\n" +
+                "\n" +
+                "Read How to Read a Book\n" +
+                "06:03 -- 08:03, 2 h 1 min\n" +
+                "\n" +
+                "Walk to Tarena classroom, Eat breakfast\n" +
+                "08:04 -- 08:33, 30 min\n");
         
         pane.setViewportView(logTextArea);
         

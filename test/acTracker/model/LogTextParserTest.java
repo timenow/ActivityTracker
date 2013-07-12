@@ -3,9 +3,9 @@ package acTracker.model;
 import static org.junit.Assert.*;
 import static acTracker.model.LogParseException.*;
 import java.util.*;
-import javax.crypto.interfaces.PBEKey;
 import org.junit.*;
 import acTracker.entry.Activity;
+
 
 public class LogTextParserTest {
     
@@ -18,6 +18,27 @@ public class LogTextParserTest {
     public void setUp() {
         Date date = new GregorianCalendar(year, month, dayOfMonth).getTime();
         parser = new LogTextParser(date);
+    }
+    
+    @Test
+    public void testIncompletenessOfARecord() {
+        String logText = "Eat breakfast\n" + 
+                "08:00 -- 08:20, 20 min\n" +
+                "\n" + 
+                "Develop ActivityTracker\n" +
+                "\n";
+
+        try {
+            parser.parse(logText);
+            fail("Should raise a LogParseException when a record is incomplete.");
+        }
+        catch (LogParseException e) {
+            String expectedMessage = 
+                    String.format(RECORD_DATA_INCOMPLETE__MISS_TIMEINFO, 
+                                  "  \n" +
+                                    "> Develop ActivityTracker");
+            assertEquals(expectedMessage, e.getMessage());
+        }
     }
     
     @Test
@@ -132,13 +153,12 @@ public class LogTextParserTest {
             		"startTime of a record is is not later than stopTime of the previous record.");
         } catch (LogParseException e) {
             String expectedMessage = 
-                    "StartTime is not later than StopTime of previous record:\n" + 
-            		  "------------------\n" + 
-            		  "  Eat breakfast\n" + 
-            		  "> 08:00 -- 08:30, 30 min\n" + 
-            		  "  \n" + 
-            		  "  Develop ActivityTracker\n" + 
-            		  "> 08:20 -- 10:00, 1 h 40 min";
+                    String.format(STARTTIME_NOT_LATER_THAN_STOPTIME_OF_PREVIOUS_RECORD,
+                                  "  Eat breakfast\n" + 
+                            		"> 08:00 -- 08:30, 30 min\n" + 
+                            		"  \n" + 
+                            		"  Develop ActivityTracker\n" + 
+                            		"> 08:20 -- 10:00, 1 h 40 min");
             assertEquals(expectedMessage, e.getMessage());
         }
     }

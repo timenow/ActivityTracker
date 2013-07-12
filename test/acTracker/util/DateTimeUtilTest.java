@@ -11,13 +11,13 @@ public class DateTimeUtilTest {
     @Test
     public void testBeforeToday() {
         Calendar current = GregorianCalendar.getInstance();
-        assertFalse(DateTimeUtil.beforeToday(current));
-        assertFalse(DateTimeUtil.beforeToday(current.getTime()));
+        assertFalse(DateTime.beforeToday(current));
+        assertFalse(DateTime.beforeToday(current.getTime()));
         
         current.add(Calendar.DAY_OF_MONTH, -1);
         Calendar yesterday = current;
-        assertTrue(DateTimeUtil.beforeToday(yesterday));
-        assertTrue(DateTimeUtil.beforeToday(yesterday.getTime()));
+        assertTrue(DateTime.beforeToday(yesterday));
+        assertTrue(DateTime.beforeToday(yesterday.getTime()));
     }
 
 }

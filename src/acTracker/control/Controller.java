@@ -12,7 +12,7 @@ public class Controller {
     private static Controller instance;
     
     private MainFrame mainFrame;
-    private ImportLogFrame importLogFrame;
+    private InputLogFrame inputLogFrame;
     private CompleteLogFrame completeLogFrame;
     private ShowLogFrame showLogFrame;
     private TrackerService trackerService;
@@ -27,39 +27,38 @@ public class Controller {
     }
     
     public void goToImportActivityLog() {
-        importLogFrame = new ImportLogFrame();
-        importLogFrame.setVisible(true);
+        inputLogFrame = new InputLogFrame();
+        inputLogFrame.setVisible(true);
     }
     
     public void parseActivityLog() {
-        String dateStr = importLogFrame.getDate();
-        String logText = importLogFrame.getActivityLog();
+        String dateStr = inputLogFrame.getDate();
+        String logText = inputLogFrame.getActivityLog();
         
         if (dateStr.isEmpty()) {
-            JOptionPane.showMessageDialog(importLogFrame, "Date cannot be empty");
+            JOptionPane.showMessageDialog(inputLogFrame, "Date cannot be empty");
             return;
         }
         if (logText.isEmpty()) {
-            JOptionPane.showMessageDialog(importLogFrame, "Activity log cannot be empty");
+            JOptionPane.showMessageDialog(inputLogFrame, "Activity log cannot be empty");
             return;
         }
         
         try {
             Date date = parseDate(dateStr);
             DayActivityLog dayActivitiesInfo = trackerService.parseActivityLog(date, logText);
-            importLogFrame.setVisible(false);
+            // hide inputLogFrame and display completeLogFrame
+            inputLogFrame.setVisible(false);
             completeLogFrame.updateView(dayActivitiesInfo);
             completeLogFrame.setVisible(true);
         }
         catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(importLogFrame, e.getMessage());
+            JOptionPane.showMessageDialog(inputLogFrame, e.getMessage());
         }
     }
     
     private Date parseDate(String dateStr) {
-        dateStr = new GregorianCalendar().get(Calendar.YEAR) + "-" + dateStr;
-        
         Date date;
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
@@ -69,14 +68,13 @@ public class Controller {
         }
         
         return date;
-        
     }
     
     public void submitActivityLog() {
         try {
             DayActivityLog dayActivityLog = completeLogFrame.getDayActivityLogInfo();
             trackerService.saveDayActivityLog(dayActivityLog);
-            importLogFrame.dispose();
+            inputLogFrame.dispose();
             completeLogFrame.dispose();
             mainFrame.setVisible(true);
         }
@@ -123,8 +121,8 @@ public class Controller {
         for (JFrame frame : frames) {
             if (mainFrame == null && frame.getClass() == MainFrame.class)
                 mainFrame = (MainFrame)frame;
-            else if (importLogFrame == null && frame.getClass() == ImportLogFrame.class)
-                importLogFrame = (ImportLogFrame)frame;
+            else if (inputLogFrame == null && frame.getClass() == InputLogFrame.class)
+                inputLogFrame = (InputLogFrame)frame;
             else if (completeLogFrame == null && frame.getClass() == CompleteLogFrame.class)
                 completeLogFrame = (CompleteLogFrame)frame;
             else if (showLogFrame == null && frame.getClass() == ShowLogFrame.class)

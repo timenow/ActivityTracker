@@ -10,7 +10,7 @@ public class MainFrameTest {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         Controller controller = Controller.getInstance();
-        controller.setFrames(mainFrame, new ImportLogFrame());
+        controller.setFrames(mainFrame, new InputLogFrame());
         
         mainFrame.setVisible(true);
     }

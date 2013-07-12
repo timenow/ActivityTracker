@@ -33,13 +33,25 @@ public class LogTextParser {
     }
     
     private Activity parseRecord(RawTextRecord record) {
-        if (! record.isFirst()) {
+        checkCompleteOfARecord(record);
+        if (! record.isFirst())
             checkBlankLineBetweenRecords(record);
-        }
         checkBlankLineBetweenLinesOfARecord(record);
         checkTimeFormat(record);
         
         return parseActivity(date, record);
+    }
+    
+    /** Check completeness of a record  */
+    private void checkCompleteOfARecord(RawTextRecord record) {
+        if (!record.isTimeInfoLineSet()) {
+            TraceInfo traceInfo = new TraceInfo();
+            traceInfo.setLines(record.getLines());
+            traceInfo.addIndicatorAtLine(record.getNameLineIndex() + 1);
+            
+            String message = String.format(RECORD_DATA_INCOMPLETE__MISS_TIMEINFO, traceInfo);
+            throw new LogParseException(message);
+        }
     }
     
     private void checkBlankLineBetweenLinesOfARecord(RawTextRecord record) {

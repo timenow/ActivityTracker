@@ -12,7 +12,7 @@ public class TrackerServiceImpl implements TrackerService {
 
     @Override
     public DayActivityLog parseActivityLog(Date date, String logText) {
-        if (!DateTimeUtil.beforeToday(date))
+        if (!DateTime.beforeToday(date))
             throw new RuntimeException("Can only import activity log of days before today");
         if (logAvailable(date))
             throw new RuntimeException("Activity log of this day already exists");
@@ -71,7 +71,7 @@ public class TrackerServiceImpl implements TrackerService {
     @Override
     public List<TimeAllocationOfDay> getTimeAllocationOfRecentDays(int days) {
         Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(DateTimeUtil.today());
+        calendar.setTime(DateTime.today());
         calendar.add(DAY_OF_YEAR, -days);
         
         List<TimeAllocationOfDay> timeAllocationOfRecentDays =

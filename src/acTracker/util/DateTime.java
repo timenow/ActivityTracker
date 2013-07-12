@@ -2,7 +2,7 @@ package acTracker.util;
 
 import java.util.*;
 
-public class DateTimeUtil {
+public class DateTime {
     
     private static Date today;
     
@@ -28,6 +28,16 @@ public class DateTimeUtil {
                 new GregorianCalendar(current.get(Calendar.YEAR),
                                       current.get(Calendar.MONTH),
                                       current.get(Calendar.DAY_OF_MONTH));
+        return todayCalendar.getTime();
+    }
+
+    public static Date yesterday() {
+        Calendar current = GregorianCalendar.getInstance();
+        Calendar todayCalendar = 
+                new GregorianCalendar(current.get(Calendar.YEAR),
+                                      current.get(Calendar.MONTH),
+                                      current.get(Calendar.DAY_OF_MONTH));
+        todayCalendar.add(Calendar.DAY_OF_YEAR, -1);
         return todayCalendar.getTime();
     }
 
