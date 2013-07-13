@@ -4,10 +4,10 @@ import java.util.*;
 import javax.swing.*;
 import acTracker.entry.*;
 
-public class ExploreStatisticsFrameTest {
+public class StatisticsFrameTest {
 
     public static void main(String[] args) {
-        ExploreStatisticsFrame statisticsFrame = new ExploreStatisticsFrame();
+        StatisticsFrame statisticsFrame = new StatisticsFrame();
         statisticsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         List<TimeAllocationOfDay> statisticsData = createSampleStatisticsData(30);
@@ -36,7 +36,8 @@ public class ExploreStatisticsFrameTest {
         int remainingMinutes = 60 * 24;
         
         TimeType[] timeTypes = { TimeType.SLEEP, TimeType.FIXED, 
-                                 TimeType.INVESTMENT, TimeType.OTHER };
+                                 TimeType.INVESTMENT, TimeType.OTHER,
+                                 TimeType.UNLOGGED };
         for (int i = 0; i < timeTypes.length; i++) {
             if (i == timeTypes.length - 1)
                 timeAllocation.put(timeTypes[i], remainingMinutes);

@@ -51,7 +51,10 @@ public class Controller {
             inputLogFrame.setVisible(false);
             
             completeLogFrame = new CompleteLogFrame();
-            completeLogFrame.updateView(dayActivitiesInfo, null, null, null);
+            completeLogFrame.updateView(dayActivitiesInfo,
+                                        trackerService.getProjects(),
+                                        trackerService.getDomains(),
+                                        trackerService.getTimeTypes());
             completeLogFrame.pack();
             completeLogFrame.setVisible(true);
         }
@@ -111,7 +114,7 @@ public class Controller {
     }
     
     public void showTimeAllocationStatistics() {
-        ExploreStatisticsFrame statisticsFrame =  new ExploreStatisticsFrame();
+        StatisticsFrame statisticsFrame =  new StatisticsFrame();
         
         List<TimeAllocationOfDay> timeAllocationOfRecentDays = 
                 trackerService.getTimeAllocationOfRecentDays(30);

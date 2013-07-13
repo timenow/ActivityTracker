@@ -11,6 +11,7 @@ public class TimeTypeTest {
         assertEquals("Sleep", TimeType.SLEEP.getName());
         assertEquals("Fixed", TimeType.FIXED.getName());
         assertEquals("Investment", TimeType.INVESTMENT.getName());
+        assertEquals("Unlogged", TimeType.UNLOGGED.getName());
         assertEquals("Other", TimeType.OTHER.getName());
     }
 

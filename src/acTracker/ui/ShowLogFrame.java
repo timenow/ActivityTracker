@@ -108,22 +108,11 @@ public class ShowLogFrame extends JFrame {
             return;
         }
         
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         StringBuilder logTextBuilder = new StringBuilder();
         for (Activity activity : dayActivityLog.getActivities()) {
             logTextBuilder.append(activity.getName() + "\n");
-            /*if (activity instanceof GetUpActivity
-                    || activity instanceof GoToBedActivity) {
-                logTextBuilder.append(dateFormat.format(activity.getStartTime()) + "\n");
-            }
-            else {
-                logTextBuilder.append(dateFormat.format(activity.getStartTime()));
-                logTextBuilder.append(" -- ");
-                logTextBuilder.append(dateFormat.format(activity.getStopTime()));
-                logTextBuilder.append(", ");
-                logTextBuilder.append(activity.getDuration() + " min\n");
-            }
-            logTextBuilder.append("\n");*/
+            logTextBuilder.append(activity.getTimeInfo() + "\n");
+            logTextBuilder.append("\n");
         }
         logTextArea.setText(logTextBuilder.toString());
     }

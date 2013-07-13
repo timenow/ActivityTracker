@@ -57,15 +57,8 @@ public class InputLogFrame extends JFrame {
         logTextArea = new JTextArea();
         logTextArea.setEditable(true);
         logTextArea.setLineWrap(true);
-        logTextArea.setText(
-                "Sleep\n" +
-                "23:44 -- 05:40, 5 h 57 min\n" +
-                "\n" +
-                "Read How to Read a Book\n" +
-                "06:03 -- 08:03, 2 h 1 min\n" +
-                "\n" +
-                "Walk to Tarena classroom, Eat breakfast\n" +
-                "08:04 -- 08:33, 30 min\n");
+        logTextArea.setWrapStyleWord(true);
+        logTextArea.setText("");
         
         pane.setViewportView(logTextArea);
         

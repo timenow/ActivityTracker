@@ -1,5 +1,6 @@
 package acTracker.ui;
 
+import static org.junit.Assert.assertArrayEquals;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;
@@ -10,18 +11,18 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import acTracker.entry.*;
 
-public class ExploreStatisticsFrame extends JFrame {
+public class StatisticsFrame extends JFrame {
 
     private static final long serialVersionUID = 922588192755966335L;
     private JTextArea statisticsTextArea;
 
-    public ExploreStatisticsFrame() {
+    public StatisticsFrame() {
         init();
     }
     
     private void init() {
-        setTitle("Explore Statistics");
-        setSize(800, 600);
+        setTitle("Statistics");
+        setSize(1024, 700);
         setResizable(false);
         setLocationRelativeTo(null);
         setContentPane(createContentPane());
@@ -60,13 +61,13 @@ public class ExploreStatisticsFrame extends JFrame {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ExploreStatisticsFrame.this.dispose();
+                StatisticsFrame.this.dispose();
             }
         });
         return panel;
     }
 
-    public void updateView(List<TimeAllocationOfDay> timeAllocationOfRecentDays) {        
+    public void updateView(List<TimeAllocationOfDay> timeAllocationOfRecentDays) {
         StringBuilder statisticTextBuilder = new StringBuilder();
         DateFormat dateFormat = new SimpleDateFormat("MM-dd");
         
@@ -76,8 +77,9 @@ public class ExploreStatisticsFrame extends JFrame {
             
             Map<TimeType, Integer> timeAllocation = timeAllocationOfDay.getTimeAllocation();
             for (TimeType timeType : timeAllocation.keySet()) {
+                String hourMinuteString = parseToHourMinuteString(timeAllocation.get(timeType));
                 statisticTextBuilder.append(
-                        timeType + ": " + timeAllocation.get(timeType) + " min, ");
+                        timeType + ": " + hourMinuteString + ",\t");
             }
             
             statisticTextBuilder.append(")");
@@ -85,6 +87,25 @@ public class ExploreStatisticsFrame extends JFrame {
         }
         
         statisticsTextArea.setText(statisticTextBuilder.toString());
+    }
+
+    private String parseToHourMinuteString(int minutes) {
+        int hour = minutes / 60;
+        int minute = minutes % 60;
+        
+        String timeStr;
+        if (hour > 0 && minute > 0)
+            timeStr = String.format("%d h %d min", hour, minute);
+        else if(hour > 0 && minute == 0)
+            timeStr = String.format("%d h", hour);
+        else if(hour == 0)
+            timeStr = String.format("%d min", minute);
+        else
+            throw new RuntimeException("Unexpected hours or minute values("
+                                       + "hour: " + hour
+                                       + "minute: " + minute + ")");
+        
+        return timeStr;
     }
     
 }

@@ -23,7 +23,7 @@ public class CompleteLogFrame extends JFrame {
     private List<Domain> domains;
     private List<TimeType> timeTypes;
     
-    // Each of the project, domain, or time type combobox relates to a Activity object.
+    // Each of the project, domain, or time type ComboBox relates to a specific Activity object.
     // Following map keeps the relation data.
     private Map<JComboBox, Activity> comboboxActivityMap = new HashMap<JComboBox, Activity>();
 

@@ -46,16 +46,23 @@ public class TrackerServiceImpl implements TrackerService {
             return timeAllocationInfo;
         
         for (Activity activity : dayActivityLog.getActivities()) {
-            // TODO: Improve handle of GetUp and GoToBed event, considering to add a new type 
-            // TODO: of activities: SleepActivity, and two types of events: GetUpEvent, GoToBedEvent
-            // TODO: or setting getUpTime and goToBedTime of each day
             TimeType timeType = activity.getTimeType();
+            // By default, time type of an activity is OTHER
             if (timeType == null) {
                 timeType = TimeType.OTHER;
             }
             timeAllocationInfo.put(
                     timeType, timeAllocationInfo.get(timeType) + activity.getDuration());
         }
+        
+        // Calculate time for Unlogged Time Type:
+        //   24_hours - already_logged_time
+        int unloggedMinutes = 24 * 60;
+        for (Integer minutes : timeAllocationInfo.values()) {
+            unloggedMinutes -= minutes;
+        }
+        timeAllocationInfo.put(TimeType.UNLOGGED, unloggedMinutes);
+        
         return timeAllocationInfo;
     }
 
@@ -85,6 +92,38 @@ public class TrackerServiceImpl implements TrackerService {
         }
         
         return timeAllocationOfRecentDays;
+    }
+
+    @Override
+    public List<Project> getProjects() {
+        return dataContext.getProjects();
+    }
+
+    @Override
+    public List<Domain> getDomains() {
+        return dataContext.getDomains();
+    }
+
+    @Override
+    public List<TimeType> getTimeTypes() {
+        List<TimeType> timeTypes = new ArrayList<TimeType>();
+        timeTypes.add(TimeType.FIXED);
+        timeTypes.add(TimeType.INVESTMENT);
+        timeTypes.add(TimeType.SLEEP);
+        timeTypes.add(TimeType.OTHER);
+        return timeTypes;
+    }
+
+    //
+    // Temporary methods below
+    //
+    
+    public void addProject(Project project) {
+        dataContext.addProject(project);
+    }
+
+    public void addDomain(Domain domain) {
+        dataContext.addDomain(domain);
     }
     
 }
