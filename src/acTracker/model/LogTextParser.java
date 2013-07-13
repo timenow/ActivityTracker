@@ -174,7 +174,7 @@ public class LogTextParser {
     private Date parseDateTime(String hourMinutePiece) throws ParseException {
         String dateTimeStr = new SimpleDateFormat("yyyy-MM-dd").format(date) 
                              + " " + hourMinutePiece;
-        Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(dateTimeStr);
+        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateTimeStr);
         return date;
     }
     

@@ -10,12 +10,17 @@ public class Project {
         this.description = description;
     }
     
-    public String name() {
+    public String getName() {
         return name;
     }
     
-    public String description() {
+    public String getDescription() {
         return description;
+    }
+    
+    @Override
+    public String toString() {
+        return name;
     }
     
 }

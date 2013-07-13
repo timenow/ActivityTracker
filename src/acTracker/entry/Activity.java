@@ -137,10 +137,27 @@ public class Activity {
     
     @Override
     public String toString() {
-        DateFormat format = new SimpleDateFormat("hh:mm");
+        DateFormat format = new SimpleDateFormat("HH:mm");
         return String.format(
                 "[%s%n%s -- %s, %s min]", name, 
                 format.format(startTime), format.format(stopTime), duration);
+    }
+
+    public String getTimeInfo() {
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        int hh = duration / 60;
+        int mm = duration % 60;
+        
+        String timeString = String.format("%s -- %s, ",
+                                          timeFormat.format(startTime),
+                                          timeFormat.format(stopTime));
+        if (hh == 0) {
+            timeString += String.format("%d min", mm);
+        }
+        else {
+            timeString += String.format("%d h %d min", hh, mm);
+        }
+        return timeString;
     }
 
 }

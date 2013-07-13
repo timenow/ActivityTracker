@@ -149,7 +149,7 @@ public class LogTextParserTest {
                 "08:20 -- 10:00, 1 h 40 min";
         try {
             parser.parse(logText);
-            fail("Need to raise a LogParseException when " +
+            fail("Should raise a LogParseException when " +
             		"startTime of a record is is not later than stopTime of the previous record.");
         } catch (LogParseException e) {
             String expectedMessage = 
@@ -196,7 +196,7 @@ public class LogTextParserTest {
                 "07:51 -- 08:12,  22 min\n" + 
                 "\n" + 
                 "阅读《如何阅读一本书》\n" + 
-                "08:22 -- 09:09, 48 min\n" + 
+                "18:22 -- 19:09, 48 min\n" + 
                 "\n" + 
                 "";
         List<Activity> activities = parser.parse(logText);
@@ -210,7 +210,7 @@ public class LogTextParserTest {
                              getDateTime(7, 51), getDateTime(8, 12), 22));
         expectedActivities.add(
                 new Activity("阅读《如何阅读一本书》",
-                             getDateTime(8, 22), getDateTime(9, 9), 48));
+                             getDateTime(18, 22), getDateTime(19, 9), 48));
         
         assertEquals(expectedActivities, activities);
     }

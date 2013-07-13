@@ -49,7 +49,10 @@ public class Controller {
             DayActivityLog dayActivitiesInfo = trackerService.parseActivityLog(date, logText);
             // hide inputLogFrame and display completeLogFrame
             inputLogFrame.setVisible(false);
-            completeLogFrame.updateView(dayActivitiesInfo);
+            
+            completeLogFrame = new CompleteLogFrame();
+            completeLogFrame.updateView(dayActivitiesInfo, null, null, null);
+            completeLogFrame.pack();
             completeLogFrame.setVisible(true);
         }
         catch (Exception e) {
@@ -70,7 +73,7 @@ public class Controller {
         return date;
     }
     
-    public void submitActivityLog() {
+    public void importActivityLog() {
         try {
             DayActivityLog dayActivityLog = completeLogFrame.getDayActivityLogInfo();
             trackerService.saveDayActivityLog(dayActivityLog);

@@ -10,8 +10,8 @@ public class ProjectTest {
         final String name = "";
         final String description = "";
         Project project = new Project(name, description);
-        assertEquals(name, project.name());
-        assertEquals(description, project.description());
+        assertEquals(name, project.getName());
+        assertEquals(description, project.getDescription());
     }
 
 }

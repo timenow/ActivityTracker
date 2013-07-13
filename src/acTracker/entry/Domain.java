@@ -17,5 +17,10 @@ public class Domain {
     public String description() {
         return description;
     }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 
 }
