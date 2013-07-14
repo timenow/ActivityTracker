@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE projects SYSTEM "../schema/projects.dtd">
+
+<projects>
+  <project>
+    <name>Develop Activity Tracker</name>
+    <description>A program for helping me track activities of daily life.</description>
+  </project>
+  <project>
+    <name>Develop Thinking</name>
+    <description>Improve my thinking ability.</description>
+  </project>
+  <project>
+    <name>Test--Develop Activity Tracker</name>
+    <description>A program to help track my life.</description>
+  </project>
+  <project>
+    <name>Test--Improve Thinking Ability</name>
+    <description>Make my head more powerful and effective</description>
+  </project>
+</projects>

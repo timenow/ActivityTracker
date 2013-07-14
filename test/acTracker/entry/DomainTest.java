@@ -10,8 +10,8 @@ public class DomainTest {
         final String name = "Programming";
         final String description = "Program to solve the problems.";
         Domain domain = new Domain(name, description);
-        assertEquals(name, domain.name());
-        assertEquals(description, domain.description());
+        assertEquals(name, domain.getName());
+        assertEquals(description, domain.getDescription());
     }
 
 }

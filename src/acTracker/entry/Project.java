@@ -23,4 +23,25 @@ public class Project {
         return name;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (obj == this)
+            return true;
+        if (obj.getClass() != Project.class)
+            return false;
+        
+        Project that = (Project)obj;
+        if (this.name.equals(that.name))
+            return true;
+        
+        return false;
+    }
+    
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+    
 }

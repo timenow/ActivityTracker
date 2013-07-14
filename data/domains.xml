@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE domains SYSTEM "../schema/domains.dtd">
+
+<domains>
+  <domain>
+    <name>Programming</name>
+    <description>Software Development</description>
+  </domain>
+  <domain>
+    <name>Thinking</name>
+    <description>The way mind works</description>
+  </domain>
+  <domain>
+    <name>Test--Programming</name>
+    <description></description>
+  </domain>
+  <domain>
+    <name>Test--Thinking</name>
+    <description></description>
+  </domain>
+</domains>

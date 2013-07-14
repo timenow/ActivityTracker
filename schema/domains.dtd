@@ -1,0 +1,4 @@
+<!ELEMENT domains (domain*)>
+<!ELEMENT domain (name, description)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT description (#PCDATA)>

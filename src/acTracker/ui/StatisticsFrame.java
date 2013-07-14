@@ -1,6 +1,5 @@
 package acTracker.ui;
 
-import static org.junit.Assert.assertArrayEquals;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;

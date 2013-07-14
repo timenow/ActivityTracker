@@ -141,6 +141,7 @@ public class Controller {
     }
 
     public void start() {
+        mainFrame = new MainFrame();
         mainFrame.setVisible(true);
     }
 

@@ -29,17 +29,17 @@ public class MainFrameTest {
     private static void fillSampleData(TrackerServiceImpl trackerService) {
         // Create a few projects
         trackerService.addProject(
-                new Project("Develop Activity Tracker", 
+                new Project("Test--Develop Activity Tracker", 
                             "A program to help track my life."));
         trackerService.addProject(
-                new Project("Improve Thinking Ability", 
+                new Project("Test--Improve Thinking Ability", 
                             "Make my head more powerful and effective"));
         
         // Create a few domains
         trackerService.addDomain(
-                new Domain("Programming", ""));
+                new Domain("Test--Programming", ""));
         trackerService.addDomain(
-                new Domain("Thinking", ""));
+                new Domain("Test--Thinking", ""));
     }
 
 }
