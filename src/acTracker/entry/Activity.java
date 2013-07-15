@@ -1,12 +1,15 @@
 package acTracker.entry;
 
+import java.io.Serializable;
 import java.text.*;
 import java.util.*;
 import acTracker.util.*;
 
 
-public class Activity {
+public class Activity implements Serializable {
 
+    private static final long serialVersionUID = 781379042431065469L;
+    
     private String name;
     private Date startTime;
     private Date stopTime;

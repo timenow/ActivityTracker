@@ -1,7 +1,11 @@
 package acTracker.entry;
 
+import java.io.Serializable;
 
-public class TimeType {
+
+public class TimeType implements Serializable {
+    
+    private static final long serialVersionUID = -6006906402458444027L;
     
     public static final TimeType SLEEP = new TimeType("Sleep");
     public static final TimeType FIXED = new TimeType("Fixed");

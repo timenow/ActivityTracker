@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE activities SYSTEM "../schema/activities.dtd">
+<activities>
+  <activity>
+    <name></name>
+    <startTime></startTime>
+    <stopTime></stopTime>
+    <duration></duration>
+    <projects>
+      <project>Develop Activity Tracker</project>
+    </projects>
+    <domains>
+      <domain>Programming</domain>
+    </domains>
+    <timeType>Investment</timeType>
+  </activity>
+</activities>

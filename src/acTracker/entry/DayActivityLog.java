@@ -1,8 +1,11 @@
 package acTracker.entry;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class DayActivityLog {
+public class DayActivityLog implements Serializable {
+    
+    private static final long serialVersionUID = -6108204433714708949L;
     
     private Date date;
     private List<Activity> activities;

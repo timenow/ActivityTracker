@@ -1,8 +1,12 @@
 package acTracker.entry;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class UnLoggedActivity extends Activity {
+public class UnLoggedActivity extends Activity
+        implements Serializable {
+    
+    private static final long serialVersionUID = 7801558089254368362L;
     
     public static final String UN_LOGGED = "Unlogged";
     

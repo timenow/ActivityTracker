@@ -1,8 +1,11 @@
 package acTracker.entry;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class TimeAllocationOfDay {
+public class TimeAllocationOfDay implements Serializable {
+
+    private static final long serialVersionUID = -1233758325939332694L;
     
     private Date date;
     private Map<TimeType, Integer> timeAllocation;

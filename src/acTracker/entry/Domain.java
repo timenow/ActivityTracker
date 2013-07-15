@@ -1,6 +1,10 @@
 package acTracker.entry;
 
-public class Domain {
+import java.io.Serializable;
+
+public class Domain implements Serializable {
+    
+    private static final long serialVersionUID = -7296152156784392763L;
     
     private String name;
     private String description;

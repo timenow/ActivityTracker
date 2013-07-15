@@ -1,6 +1,10 @@
 package acTracker.entry;
 
-public class Project {
+import java.io.Serializable;
+
+public class Project implements Serializable {
+    
+    private static final long serialVersionUID = -3713283335730041843L;
     
     private String name;
     private String description;

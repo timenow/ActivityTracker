@@ -12,14 +12,49 @@ public class DataContext {
     
     private Map<Date, DayActivityLog> dayActivityLogDepot = 
             new HashMap<Date, DayActivityLog>();
+    private DataFile dayActivityLogDepotDb;
     private List<Project> projects = null;
     private List<Domain> domains = null;
     
+    public DataContext() {
+        try {
+            dayActivityLogDepotDb = DataFile.open("data/activityLogDepot");
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        dayActivityLogDepotDb.close();
+    }
+    
     public void saveDayActivitiesInfo(DayActivityLog dayActivitiesInfo) {
         dayActivityLogDepot.put(dayActivitiesInfo.getDate(), dayActivitiesInfo);
+        
+        try {
+            dayActivityLogDepotDb.add(dayActivitiesInfo.getDate(), dayActivitiesInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     public DayActivityLog getDayActivityLog(Date date) {
+        if (!dayActivityLogDepot.containsKey(date)) {
+            DayActivityLog log;
+            try {
+                log = (DayActivityLog)dayActivityLogDepotDb.findBy(date);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+            dayActivityLogDepot.put(date, log);
+        }
+        
         return dayActivityLogDepot.get(date);
     }
     
